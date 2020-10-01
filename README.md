@@ -1,6 +1,6 @@
 # IP Masquerade Network Configuration
 
-> 목차
+## 목차
 
 1. IP Masquerade 소개
 2. 목적
@@ -8,38 +8,36 @@
 4. Diagram
 5. HANDBOOK
 
-> 1) IP Masquerade 소개
+## 1) IP Masquerade 소개
 
 NAT(SNAT) 와 비슷한 역할을 하지만 포트포워딩까지 해주는 기능이다. 외부망(인터넷)과 통신 가능한 공인 ip를 가지고 있는 호스트pc를 사용해 내부 사설 네트워크의 pc들이 외부망(인터넷)과 통신할 수 있게 하는 기능이다. Masquerade의 본 뜻인 가면이라는 의미에서 내부 사설 네트워크의 pc들은 공인 ip를 사용하는 호스트의 뒤에 숨어서 외부와 통신하므로 외부에서 직접 접근하지 못해 내부 사설 네트워크의 보안이 향상되며 보다 안전한 네트워크 환경을 구성할 수 있는 기술이다.
 
-> 2) 목적
+## 2) 목적
 
 안전한 내부 네트워크망을 위한 ip masquerade 구성 및 Web, DataBase, Storage 서버 구축 과 공유 디렉토리 연결
 
-> 3) 환경
+## 3) 환경
 
-Host OS : mac OS Catalina 10.15.1
-Guest OS : CentOS-7-x86_64-Minimal-2003.iso
-Virtual Machine : Oracle VirtualBox 6.1.8
-Network1 : nat network(Nat) 10.0.2.15/24(dhcp)
-Network2 : web_internal(Host-only Adapter = 'vboxnet0') 192.168.123.0/24
-Network3 : storage_internal(Host-only Adapter = 'vboxnet1') 192.168.124.0/24
-Network4 : db_internal(Host-only Adapter = 'vboxnet2') 192.168.125.0/24
+- Host OS : mac OS Catalina 10.15.1
+- Guest OS : CentOS-7-x86_64-Minimal-2003.iso
+- Virtual Machine : Oracle VirtualBox 6.1.8
+- Network1 : nat network(Nat) 10.0.2.15/24(dhcp)
+- Network2 : web_internal(Host-only Adapter = 'vboxnet0') 192.168.123.0/24
+- Network3 : storage_internal(Host-only Adapter = 'vboxnet1') 192.168.124.0/24
+- Network4 : db_internal(Host-only Adapter = 'vboxnet2') 192.168.125.0/24
 
-> 4) Diagram
+## 4) Architecture
 
 ![images/masquerade_network2.png](images/masquerade_network2.png)
 
-> 5) HANDBOOK
+## 5) HANDBOOK
 
 ### 1. 네트워크 구성
 
 - Interface Adapter Setting
     1. 외부망 Nat netwrok 1개(dhcp)
     2. 내부망 Host-only network 3개(manually)
-
         Adapters
-
         - 'vboxnet0' 123 번 대역 : web server
         - 'vboxnet1'  124 번 대역 : storage server
         - 'vboxnet2' 125 번 대역 : db server
@@ -379,8 +377,8 @@ Network4 : db_internal(Host-only Adapter = 'vboxnet2') 192.168.125.0/24
 
 - **웹브라우저 에서 접속**
 
-    ```jsx
-    [http://web서버주소/wp-admin/install.php](http://xn--web-5f1nx7pitap03b/wp-admin/install.php)
+    ```
+    http://web서버주소/wp-admin/install.php
     ```
 
     아래 화면 나올시 완성, 이후 워드프레스 메뉴얼 대로 사이트 편집
